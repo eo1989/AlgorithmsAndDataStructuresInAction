@@ -18,7 +18,7 @@ def __euclidean_squared_distance(p: Tuple, q: Tuple) -> float:
         A floating point value for the Euclidean distance between the two arguments.
     """
     dim = len(p)
-    return sum([(p[i] - q[i]) ** 2 for i in range(dim)])
+    return sum((p[i] - q[i]) ** 2 for i in range(dim))
 
 
 def __group_points_by_cluster(points: List[Tuple], cluster_indices: List[int]) -> List[List[Tuple]]:

@@ -25,7 +25,7 @@ def dbscan(points: List[Tuple], eps: float, min_points: int) -> List[int]:
         process_set = {i}
         cluster_indices[i] = NOISE
         current_index += 1
-        while len(process_set) > 0:
+        while process_set:
             j = process_set.pop()
             neighbors = kd_tree.query(points[j], k=None, distance_upper_bound=eps)
             if len(neighbors) < min_points:

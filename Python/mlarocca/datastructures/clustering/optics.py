@@ -21,9 +21,7 @@ def optics(points: List[Tuple], eps: float, min_points: int) -> Tuple[List[float
     """
 
     def core_distance(distances: List[float]) -> Optional[float]:
-        if len(distances) < min_points:
-            return None
-        return distances[min_points - 1]
+        return None if len(distances) < min_points else distances[min_points - 1]
 
     def update(neighbors: List[int], distances: List[float], p: int, seeds: List[Tuple[float, int]]) -> \
             List[Tuple[float, int]]:
