@@ -31,7 +31,7 @@ class DWayHeap(object):
         self._pairs: List[Tuple[float, Any]] = []
         self.D = branching_factor
 
-        if len(elements) > 0:
+        if elements:
             self._heapify(elements, priorities)
 
     def __sizeof__(self) -> int:
@@ -87,12 +87,11 @@ class DWayHeap(object):
         while current_index < first_leaf:
             child_index = self._highest_priority_child_index(current_index)
             assert (child_index is not None)
-            if self._pairs[child_index][0] > input_priority:
-                self._pairs[current_index] = self._pairs[child_index]
-                current_index = child_index
-            else:
+            if self._pairs[child_index][0] <= input_priority:
                 break
 
+            self._pairs[current_index] = self._pairs[child_index]
+            current_index = child_index
         self._pairs[current_index] = input_pair
 
     def _bubble_up(self, index: int) -> None:

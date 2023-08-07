@@ -113,11 +113,9 @@ class KmeansProfile(unittest.TestCase):
             dataset = [KmeansProfile.random_point(100) for _ in range(n)]
 
             step = 100
+            max_iter = 10
             for n in range(len(dataset), 10000, step):
-                for _ in range(step):
-                    dataset.append(KmeansProfile.random_point(1000))
-
-                max_iter = 10
+                dataset.extend(KmeansProfile.random_point(1000) for _ in range(step))
                 for k in [5, 10, 20, 35, 50, 75, 100, 200]:
                     pro_classic = cProfile.Profile()
                     pro_boosted = cProfile.Profile()

@@ -41,20 +41,16 @@ class HuffmanNode(object):
         if self.symbols() != left_symbols + right_symbols:
             return False
 
-        if self.priority() != left_priority + right_priority:
-            return False
-
-        return True
+        return self.priority() == left_priority + right_priority
 
     def tree_encoding(self) -> Dict[str, str]:
         left_encoding_table = {} if self._left is None else self._left.tree_encoding()
         right_encoding_table = {} if self._right is None else self._right.tree_encoding()
 
-        encoding_table = {}
-
-        for key, path in left_encoding_table.items():
-            encoding_table[key] = HuffmanNode.encode_left_path(path)
-
+        encoding_table = {
+            key: HuffmanNode.encode_left_path(path)
+            for key, path in left_encoding_table.items()
+        }
         for key, path in right_encoding_table.items():
             encoding_table[key] = HuffmanNode.encode_right_path(path)
 
